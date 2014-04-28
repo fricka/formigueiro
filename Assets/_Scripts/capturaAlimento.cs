@@ -20,6 +20,7 @@ public class capturaAlimento : MonoBehaviour {
         if (other.tag == "folha")
         {
             pegouFolha = true;
+            GetComponent<instru>().pegouComida();
         }
 
         if (other.tag == "ninho")
