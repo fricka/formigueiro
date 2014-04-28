@@ -4,19 +4,28 @@ using System.Collections;
 public class feromonio : MonoBehaviour {
 
     public GameObject fumacaFeromonio;
+    public Transform lancaFeromonio;
+    public int qtdeFeromonio = 100;
+    public GUIText GUIferomonio;
     
-    // Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1") && qtdeFeromonio > 0)
         {
-            Instantiate(fumacaFeromonio, transform.position, transform.rotation);
+            Instantiate(fumacaFeromonio, lancaFeromonio.position, lancaFeromonio.rotation);
+            qtdeFeromonio--;
+            GUIferomonio.text = qtdeFeromonio.ToString();
         }
 	
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "feromonio")
+        {
+            Destroy(other.gameObject);
+            qtdeFeromonio++;
+            GUIferomonio.text = qtdeFeromonio.ToString();
+        }
+    }
 }
