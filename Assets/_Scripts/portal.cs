@@ -7,6 +7,7 @@ public class portal : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
     {
-        Application.LoadLevel(nomeLevel);
+        if (other.tag == "portal")
+            Application.LoadLevel(nomeLevel);
 	}
 }

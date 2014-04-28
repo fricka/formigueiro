@@ -43,6 +43,20 @@ public class instru : MonoBehaviour {
         display.text = "";
     }
 
+    public void chegouComida()
+    {
+        StartCoroutine("chegouFinal");
+    }
+
+    public IEnumerator chegouFinal()
+    {
+        display.text = "Congratulations!!!";
+
+        yield return new WaitForSeconds(3);
+
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
     IEnumerator Display()
     {
 

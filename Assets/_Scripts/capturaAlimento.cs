@@ -12,6 +12,10 @@ public class capturaAlimento : MonoBehaviour {
         {
             folha.renderer.enabled = true;
         }
+        else
+        {
+            folha.renderer.enabled = false;
+        }
 
     }
 
@@ -27,7 +31,7 @@ public class capturaAlimento : MonoBehaviour {
         {
             if (pegouFolha)
             {
-                Application.LoadLevel(Application.loadedLevel);
+                GetComponent<instru>().chegouComida();
             }
             
             pegouFolha = false;
