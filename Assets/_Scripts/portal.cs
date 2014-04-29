@@ -9,5 +9,21 @@ public class portal : MonoBehaviour {
     {
         if (other.tag == "portal")
             Application.LoadLevel(nomeLevel);
+
+        if (other.tag == "portalVolta")
+        {
+            if (GetComponent<capturaAlimento>().pegouDoce)
+            {
+                Application.LoadLevel(nomeLevel+"2");
+            }
+            else if (GetComponent<capturaAlimento>().pegouBanana)
+            {
+                Application.LoadLevel(nomeLevel + "1");
+            }
+            else
+            {
+                Application.LoadLevel(nomeLevel + "0");
+            }
+        }
 	}
 }

@@ -4,7 +4,10 @@ using System.Collections;
 public class capturaAlimento : MonoBehaviour {
 
     public bool pegouFolha = false;
-    public GameObject folha;
+    public bool pegouBanana = false;
+    public bool pegouDoce = false;
+
+    public GameObject folha, banana, doce;
 
     void Update()
     {
@@ -15,6 +18,24 @@ public class capturaAlimento : MonoBehaviour {
         else
         {
             folha.renderer.enabled = false;
+        }
+
+        if (pegouBanana)
+        {
+            banana.renderer.enabled = true;
+        }
+        else
+        {
+            banana.renderer.enabled = false;
+        }
+
+        if (pegouDoce)
+        {
+            doce.renderer.enabled = true;
+        }
+        else
+        {
+            doce.renderer.enabled = false;
         }
 
     }
@@ -29,13 +50,34 @@ public class capturaAlimento : MonoBehaviour {
 
         if (other.tag == "ninho")
         {
-            if (pegouFolha)
+            if (pegouFolha || pegouBanana || pegouDoce)
             {
                 GetComponent<instru>().chegouComida();
             }
             
             pegouFolha = false;
-            
+            pegouBanana = false;
+            pegouDoce = false;            
         }
+
+        if (other.gameObject.tag == "doce")
+        {
+            Destroy(other.gameObject);
+            pegouDoce = true;
+            GetComponent<instru>().pegouComida();
+        }
+
+        if (other.gameObject.tag == "banana")
+        {
+            Destroy(other.gameObject);
+            pegouBanana = true;
+            GetComponent<instru>().pegouComida();
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        
+
     }
 }
